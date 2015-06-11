@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150611202151) do
+ActiveRecord::Schema.define(version: 20150611202852) do
+
+  create_table "found_items", force: :cascade do |t|
+    t.string   "name"
+    t.text     "desc"
+    t.string   "category"
+    t.string   "image1"
+    t.string   "image2"
+    t.string   "image3"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
