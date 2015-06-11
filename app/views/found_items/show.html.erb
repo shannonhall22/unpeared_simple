@@ -1,41 +1,55 @@
 <!-- Responsive panel example-->
 
 <div class="row">
-  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Found Item #<%= @found_item.id %></h3>
+        <h3 class="panel-title"><%= @found_item.name %></h3>
       </div>
       <div class="panel-body">
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-12">
+                <%= image_tag @found_item.image1, class: "img-responsive" %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <% if @found_item.image2.present? %>
+                  <%= image_tag @found_item.image2, class: "img-responsive small-image" %>
+                <% end %>
+                <% if @found_item.image3.present? %>
+                  <%= image_tag @found_item.image3, class: "img-responsive small-image" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
             <dl class="dl-horizontal">
-              <dt>Name</dt>
-              <dd><%= @found_item.name %></dd>
+              <p><%= @found_item.desc %></p>
 
-              <dt>Desc</dt>
-              <dd><%= @found_item.desc %></dd>
+              <hr>
 
               <dt>Category</dt>
               <dd><%= @found_item.category %></dd>
 
-              <dt>Image1</dt>
-              <dd><%= @found_item.image1 %></dd>
+              <dt>Location Found</dt>
+              <dd><%= @found_item.location %></dd>
 
-              <dt>Image2</dt>
-              <dd><%= @found_item.image2 %></dd>
+              <hr>
 
-              <dt>Image3</dt>
-              <dd><%= @found_item.image3 %></dd>
+              <% if current_user.id == @found_item.user_id %>
+                <div class="btn-group btn-group-justified">
 
+                  <%= link_to icon('edit'), edit_found_item_path(@found_item), class: "btn btn-warning" %>
+
+                  <%= link_to icon('trash-o'), @found_item, method: :delete, data: { confirm: "Do you really want to delete this found_item?" }, class: "btn btn-danger" %>
+              <% else %>
+                <p><a class="btn btn-primary btn-block" href="#" role="button">Message Finder</a></p>
+                </div>
+              <% end %>
             </dl>
-            <div class="btn-group btn-group-justified">
-              <%= link_to icon('chevron-left'), found_items_path, class: "btn btn-primary" %>
-
-              <%= link_to icon('edit'), edit_found_item_path(@found_item), class: "btn btn-warning" %>
-
-              <%= link_to icon('trash-o'), @found_item, method: :delete, data: { confirm: "Do you really want to delete this found_item?" }, class: "btn btn-danger" %>
-            </div>
           </div>
         </div>
       </div>

@@ -69,6 +69,6 @@ class FoundItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def found_item_params
-      params.require(:found_item).permit(:name, :desc, :category, :image1, :image2, :image3)
+      params.require(:found_item).permit(:name, :desc, :category, :image1, :image2, :image3, :location, :user_id)
     end
 end

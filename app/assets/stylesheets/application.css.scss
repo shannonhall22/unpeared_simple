@@ -16,6 +16,11 @@
 @import "bootstrap";
 
 .image-index {
-  width: 2500px;
-  height: auto;
+  width: 250px;
+  max-height: 300px;
+}
+
+.small-image {
+  width: 100px;
+  height: 100px;
 }
