@@ -1,7 +1,9 @@
 <div class="page-header">
   <h1>
     Found Items
-    <%= link_to icon('plus'), new_found_item_path, class: "btn btn-lg btn-success" %>
+    <% if user_signed_in? %>
+      <%= link_to icon('plus'), new_found_item_path, class: "btn btn-lg btn-success" %>
+    <% end %>
   </h1>
 </div>
 
@@ -20,35 +22,14 @@
   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Found Item #<%= found_item.id %></h3>
+        <h3 class="panel-title"><%= found_item.name %></h3>
       </div>
       <div class="panel-body">
         <dl>
-          <dt>Name</dt>
-          <dd><%= found_item.name %></dd>
-
-          <dt>Desc</dt>
-          <dd><%= found_item.desc %></dd>
-
-          <dt>Category</dt>
-          <dd><%= found_item.category %></dd>
-
-          <dt>Image1</dt>
           <dd><%= found_item.image1 %></dd>
-
-          <dt>Image2</dt>
-          <dd><%= found_item.image2 %></dd>
-
-          <dt>Image3</dt>
-          <dd><%= found_item.image3 %></dd>
-
         </dl>
         <div class="btn-group btn-group-justified">
           <%= link_to icon('search-plus'), found_item, class: "btn btn-primary" %>
-
-          <%= link_to icon('edit'), edit_found_item_url(found_item), class: "btn btn-warning" %>
-
-          <%= link_to icon('trash-o'), found_item, method: :delete, data: { confirm: "Do you really want to delete this found_item?" }, class: "btn btn-danger" %>
         </div>
       </div>
     </div>
