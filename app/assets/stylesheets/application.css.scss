@@ -16,11 +16,26 @@
 @import "bootstrap";
 
 .image-index {
-  width: 250px;
-  max-height: 300px;
+  max-width: 220px;
+  max-height: 175px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .small-image {
   width: 100px;
   height: 100px;
+}
+
+.item-border {
+  height: 300px;
+  width: 250px;
+}
+
+.bottom-button {
+  margin-bottom: 0;
+}
+
+.boxed-image {
+  height: 180px;
 }

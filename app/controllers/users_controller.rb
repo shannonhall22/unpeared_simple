@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def show
-    @found_items = FoundItem.all
-    @items = Item.all
+    @found_items = current_user.found_items
+    @items = current_user.items
   end
 end

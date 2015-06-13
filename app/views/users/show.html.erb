@@ -9,7 +9,7 @@
   <% @found_items.each do |found_item| %>
 <!--     <#% if current_user.id == @found_items.user_id %> -->
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
-        <div class="panel panel-default">
+        <div class="panel panel-default item-border">
           <div class="panel-heading">
             <h3 class="panel-title"><%= found_item.name %></h3>
           </div>
@@ -34,24 +34,24 @@
   </h1>
 </div>
 
+<!-- First loop through items to find matching user_id to current_user.id -->
+
 <div class="row">
   <% @items.each do |found_item| %>
-<!--     <#% if current_user.id == @found_items.user_id %> -->
-      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title"><%= found_item.name %></h3>
-          </div>
-          <div class="panel-body">
-            <dl>
-              <dd><%= image_tag (found_item.image1), class: "image-index img-responsive" %></dd>
-            </dl>
-            <div class="btn-group btn-group-justified">
-              <%= link_to icon('search-plus'), found_item, class: "btn btn-primary" %>
-            </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
+      <div class="panel panel-default item-border">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= found_item.name %></h3>
+        </div>
+        <div class="panel-body">
+          <dl>
+            <dd><%= image_tag (found_item.image1), class: "image-index img-responsive" %></dd>
+          </dl>
+          <div class="btn-group btn-group-justified">
+            <%= link_to icon('search-plus'), found_item, class: "btn btn-primary" %>
           </div>
         </div>
       </div>
-<!--     <#% end %> -->
+    </div>
   <% end %>
 </div>
