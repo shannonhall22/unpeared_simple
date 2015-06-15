@@ -3,9 +3,9 @@
 
   <div class="form-inputs">
     <%= f.input :name %>
-    <%= f.input :desc %>
-    <%= f.input :location %>
-    <%= f.input :category %>
+    <%= f.input :desc, :label => 'Description' %>
+    <%= f.input :location, :label => 'Location Found (ZIP)' %>
+    <%= f.input :category, :collection => ['Jewelery', 'Footwear', 'Gloves', 'Other'] %>
     <%= f.input :image1 %>
     <%= f.input :image2 %>
     <%= f.input :image3 %>

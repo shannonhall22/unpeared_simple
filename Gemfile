@@ -1,9 +1,14 @@
 source 'https://rubygems.org'
 
+gem 'pry'
 gem 'devise'
 gem 'simple_form'
 gem 'font-awesome-sass'
 gem 'bootstrap-sass'
+# Allow users to upload images
+gem 'carrierwave'
+#Authentican gem
+gem 'cancan'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
@@ -29,8 +34,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
-gem 'pry'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

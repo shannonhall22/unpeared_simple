@@ -1,5 +1,13 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :current_user_owner, only: [:edit, :update, :destroy]
+
+  def current_user_owner
+    @items = Item.find(params[:id])
+    unless current_user.id == @items.user_id
+      redirect_to root_url
+    end
+  end
 
   # GET /items
   # GET /items.json

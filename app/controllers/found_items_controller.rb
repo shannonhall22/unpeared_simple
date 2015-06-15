@@ -1,5 +1,13 @@
 class FoundItemsController < ApplicationController
   before_action :set_found_item, only: [:show, :edit, :update, :destroy]
+  before_action :current_user_owner, only: [:edit, :update, :destroy]
+
+  def current_user_owner
+    @found_items = FoundItem.find(params[:id])
+    unless current_user.id == @found_items.user_id
+      redirect_to root_url
+    end
+  end
 
   # GET /found_items
   # GET /found_items.json
