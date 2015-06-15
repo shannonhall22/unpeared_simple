@@ -1,68 +1,14 @@
 <div class="container">
   <div class="row">
-  <h1>My Profile</h1>
-  </div>
-  <div class="row">
     <div class="col-md-3 search">
+
       <h3>My Found Items</h3>
       <h3>My Items for Sale</h3>
-      <h3>Edit Profile</h3>
+      <h3><%= link_to 'Edit Profile', '/users/edit' %></h3>
       <h3>Cancel Account</h3>
     </div>
     <div class="col-md-9">
-      <div class="page-header">
-        <h1>
-          My Found Items
-          <%= link_to icon('plus'), new_found_item_path, class: "btn btn-lg btn-success" %>
-        </h1>
-      </div>
 
-      <div class="row">
-        <% @found_items.each do |found_item| %>
-          <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
-            <div class="panel panel-default item-border">
-              <div class="panel-heading">
-                <h3 class="panel-title"><%= found_item.name %></h3>
-              </div>
-              <div class="panel-body">
-                <dl>
-                  <dd><%= image_tag (found_item.image1), class: "image-index img-responsive" %></dd>
-                </dl>
-                <div class="btn-group btn-group-justified">
-                  <%= link_to icon('search-plus'), found_item, class: "btn btn-primary" %>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
-
-      <div class="page-header">
-        <h1>
-          My Items for Sale
-          <%= link_to icon('plus'), new_item_path, class: "btn btn-lg btn-success" %>
-        </h1>
-      </div>
-
-      <div class="row">
-        <% @items.each do |found_item| %>
-          <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
-            <div class="panel panel-default item-border">
-              <div class="panel-heading">
-                <h3 class="panel-title"><%= found_item.name %></h3>
-              </div>
-              <div class="panel-body">
-                <dl>
-                  <dd><%= image_tag (found_item.image1), class: "image-index img-responsive" %></dd>
-                </dl>
-                <div class="btn-group btn-group-justified">
-                  <%= link_to icon('search-plus'), found_item, class: "btn btn-primary" %>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
     </div>
   </div>
 </div>

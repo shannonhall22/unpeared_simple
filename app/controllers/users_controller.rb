@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
 
   def show
+    @user = User.all
     @found_items = current_user.found_items
     @items = current_user.items
   end
