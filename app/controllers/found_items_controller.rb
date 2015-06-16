@@ -12,7 +12,8 @@ class FoundItemsController < ApplicationController
   # GET /found_items
   # GET /found_items.json
   def index
-    @found_items = FoundItem.all
+    @q = FoundItem.ransack(params[:q])
+    @found_items = @q.result
   end
 
   # GET /found_items/1

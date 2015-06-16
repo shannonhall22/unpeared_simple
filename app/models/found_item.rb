@@ -1,5 +1,6 @@
 class FoundItem < ActiveRecord::Base
   belongs_to :user
+  belongs_to :category
 
   mount_uploader :image1, Image1Uploader
   mount_uploader :image2, Image2Uploader
