@@ -1,0 +1,61 @@
+<!-- Responsive panel example-->
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <%= @item.name %>
+          <div class="pull-right">
+            $<%= @item.price %>
+          </div>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-12">
+                <%= image_tag @item.image1, class: "img-responsive" %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3 mini-image-border">
+                <% if @item.image2.present? %>
+                  <%= image_tag @item.image2, class: 'small-image' %>
+                <% end %>
+              </div>
+              <div class="col-md-3 mini-image-border">
+                <% if @item.image3.present? %>
+                  <%= image_tag @item.image3, class: 'small-image' %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <dl class="dl-horizontal">
+              <p><%= @item.desc %></p>
+
+              <hr>
+
+              <dt>Category</dt>
+              <dd><%= @item.category %></dd>
+            </dl>
+
+            <% if current_user.id == @item.user_id %>
+              <div class="btn-group btn-group-justified">
+                <%= link_to icon('edit'), edit_item_path(@item), class: "btn btn-warning" %>
+
+                <%= link_to icon('trash-o'), @item, method: :delete, data: { confirm: "Do you really want to delete this item?" }, class: "btn btn-danger" %>
+            <% else %>
+                <p><a class="btn btn-primary btn-block" href="#" role="button">Purchase</a></p>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End responsive panel example -->
