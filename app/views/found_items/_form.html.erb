@@ -9,13 +9,14 @@
         <%= f.input :location, :label => 'Location Found (ZIP)' %>
       </div>
       <div class="col-md-6">
-        <%= f.input :category, :collection => ['Jewelery', 'Footwear', 'Gloves', 'Other'] %>
+        <%= f.association :category, collection: Category.all, label_method: :name, value_method: :id %>
       </div>
     </div>
 
     <hr>
 
-    <%= f.input :image1, :label => 'Upload Images (Must upload at least one)' %>
+    <h5><strong>Upload Images <small>*At least one required</small></strong></h5>
+    <%= f.input :image1, label: false %>
     <%= f.input :image2, label: false %>
     <%= f.input :image3, label: false %>
     <%= f.hidden_field :user_id, value: current_user.id %>

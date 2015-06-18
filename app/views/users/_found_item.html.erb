@@ -1,21 +1,4 @@
-<div class="container">
-  <div class="row">
-    <div class="page-header">
-      <h1>My Profile</h1>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-2">
-      <h4><%= link_to 'My Found Items', '#', remote: true %></h4>
-<!--       <h4>My Items for Sale</h4> -->
-      <hr>
-      <h4><%= link_to 'Edit Profile', 'users/edit_profile', remote: true %></h4>
-      <h4><%= link_to 'Cancel Account', '#', remote: true %></h4>
-    </div>
-
-    <div class="col-md-10 javascript">
-      <div class="row isotope-container">
+<div class="row isotope-container">
   <% @found_items.each do |found_item| %>
     <% if found_item.user_id == current_user.id %>
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 isotope-item">
@@ -37,7 +20,4 @@
       </div>
     <% end %>
   <% end %>
-</div>
-    </div>
-  </div>
 </div>

@@ -15,15 +15,16 @@
 
     <hr>
 
+    <h5><strong>Upload Images <small>*At least one required</small></strong></h5>
     <% if @item.image1.present? %>
-      <%= image_tag(@item.image1_url, class: 'small-image') %>
-      <%= f.input :image1, :label => 'Upload Images (Must upload at least one)' %>
+      <%#= image_tag(@item.image1_url, class: 'small-image') %>
+      <%= f.input :image1, label: false %>
       <%= f.hidden_field :image1_cache %>
     <% else %>
-      <%= f.input :image1, :label => 'Upload Images (Must upload at least one)' %>
+      <%= f.input :image1, label: false %>
     <% end %>
 
-    <%= f.file_field :image2, label: false, title: 'test' %>
+    <%= f.input :image2, label: false, title: 'test' %>
     <%= f.input :image3, label: false %>
     <%= f.hidden_field :user_id, value: current_user.id %>
   </div>

@@ -4,8 +4,6 @@
       <h1>
         Found Items
         <div class="pull-right">
-          <%= link_to icon('search'), new_found_item_path, class: "btn btn-lg btn-primary" %>
-
           <% if user_signed_in? %>
             <%= link_to icon('plus'), new_found_item_path, class: "btn btn-lg btn-success" %>
           <% end %>
@@ -16,25 +14,43 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-md-2">
+      <h4>Narrow By:</h4>
+      <br>
+
       <%= search_form_for @q do |f| %>
         <div class="form-group">
-          <%= f.label :location_eq, "Location (ZIP)" %>
-          <%= f.text_field :location_eq, :class => "form-control", :placeholder => "Enter a few characters" %>
+          <h5><strong>Search:</strong></h5>
+          <%= f.text_field :name_or_desc_cont, :class => "form-control", :placeholder => "Enter text here..." %>
         </div>
-        <div class="form-group">
 
+        <hr>
+
+        <div class="form-group">
+          <h5>Location (ZIP only):</h5>
+          <%= f.text_field :location_eq, :class => "form-control", :placeholder => "Ex. 60654" %>
         </div>
+
+        <hr>
+
+        <div class="form-group">
+          <h5>Category:</h5>
+          <% Category.all.each do |category| %>
+            <p>
+              <%= check_box_tag('q[category_id_eq_any][]', category.id, (true if @q.category_id_eq_any.try(:include?, category.id))) %>
+              <%= category.name %>
+            </p>
+          <% end %>
+        </div>
+
+        <hr>
 
         <%= f.submit :class => "btn btn-primary" %>
-        <a href="/found_items" class="btn btn-default">Clear filters</a>
+        <a href="/found_items" class="btn btn-default">Reset</a>
       <% end %>
     </div>
-  </div>
 
-<hr>
-
-  <div class="col-md-12">
+  <div class="col-md-10">
     <div class="row isotope-container">
     <% @found_items.each do |found_item| %>
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 isotope-item">

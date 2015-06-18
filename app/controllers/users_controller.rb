@@ -14,5 +14,10 @@ class UsersController < ApplicationController
     @user = User.all
     @found_items = current_user.found_items
     @items = current_user.items
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 end

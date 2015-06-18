@@ -7,6 +7,6 @@ class FoundItem < ActiveRecord::Base
   mount_uploader :image3, Image3Uploader
 
   #validations of the new and edit forms for found items - location must be zip
-  validates :name, :category, :location, :image1, presence: true
+  validates :name, :category_id, :location, :image1, presence: true
   validates :location, numericality: true
 end

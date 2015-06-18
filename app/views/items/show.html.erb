@@ -48,7 +48,7 @@
 
                 <%= link_to icon('trash-o'), @item, method: :delete, data: { confirm: "Do you really want to delete this item?" }, class: "btn btn-danger" %>
             <% else %>
-                <p><a class="btn btn-primary btn-block" href="#" role="button">Purchase</a></p>
+                <%= link_to 'Add to Cart', '#', class: 'btn btn-primary btn-block' %>
               </div>
             <% end %>
           </div>

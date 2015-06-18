@@ -30,6 +30,7 @@
 .item-border {
   height: 300px;
   width: 250px;
+  margin-right: 0;
 }
 
 .bottom-button {
@@ -47,3 +48,10 @@
 .mini-image-border {
   padding-top: 10px;
 }
+
+.isotope-item {
+  width: 310px;
+  padding-right: 0;
+  padding-left: 15px;
+}
+
