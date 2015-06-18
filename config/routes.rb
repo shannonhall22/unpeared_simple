@@ -1,11 +1,18 @@
 Rails.application.routes.draw do
 
+  resources :ages
+  resources :genders
+  resources :sides
+  resources :sizes
   resources :categories
   resources :found_items
   devise_for :users
   root to: "items#index"
   resources :items
   resources :charges
+
+  get "/home" => "static#show"
+  get "/about" => "static#about"
 
   get "/users/:id" => "users#show"
 

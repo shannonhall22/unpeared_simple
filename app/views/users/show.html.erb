@@ -1,55 +1,146 @@
 <div class="container">
   <div class="row">
     <div class="page-header">
-      <h1>My Profile</h1>
+      <h1>
+        My Profile
+        <div class="pull-right">
+          <%= link_to icon('plus'), new_item_path, class: "btn btn-lg btn-success btn-marketplace" %>
+          <%= link_to icon('plus'), new_found_item_path, class: "btn btn-lg btn-success btn-found" %>
+        </div>
+      </h1>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-2">
-      <img src="<%= current_user.image_url %>" class="profile-pic img-responsive">
+      <% if current_user.image_url.present? %>
+        <img src="<%= current_user.image_url %>" class="profile-pic img-responsive">
+        <hr>
+      <% end %>
+      <h4><%= link_to 'My Found Items', '#', class: 'found-button-js btn btn-warning btn-block' %></h4>
+      <h4><%= link_to 'My Marketplace', '#', class: 'items-button-js btn btn-warning btn-block' %></h4>
       <hr>
-      <h4><%= link_to 'My Found Items', class: 'found-items-js' %></h4>
-<!--       <h4>My Items for Sale</h4> -->
-      <hr>
-      <h4><%= link_to 'Edit Profile', class: 'edit-profile-js' %></h4>
-      <h4><%= link_to 'Cancel Account', remote: true %></h4>
+      <h4><%= link_to 'Edit Profile', '#', class: 'edit-profile-js btn btn-default btn-block' %></h4>
+      <h4><%= link_to 'Cancel Account', '#', class: 'cancel-profile-js btn btn-default btn-block', remote: true %></h4>
     </div>
 
-    <div class="col-md-10 javascript">
+    <div class="col-md-10">
       <div class="row isotope-container">
-        <% @found_items.each do |found_item| %>
-          <% if found_item.user_id == current_user.id %>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 isotope-item">
-              <div class="panel panel-default item-border">
-                <div class="panel-heading">
-                  <h3 class="panel-title"><%= found_item.name.capitalize.truncate(30) %></h3>
-                </div>
-                <div class="panel-body">
-                  <dl>
-                    <div class="boxed-image">
-                      <dd><%= image_tag (found_item.image1), class: "image-index img-responsive" %></dd>
+        <div class="found-js">
+          <% if @found_items.present? %>
+            <% @found_items.each do |found_item| %>
+              <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 isotope-item">
+                <div class="panel panel-default item-border">
+                  <div class="panel-heading">
+                    <h3 class="panel-title"><%= found_item.name.capitalize.truncate(30) %></h3>
+                  </div>
+                  <div class="panel-body">
+                    <dl>
+                      <div class="boxed-image">
+                        <dd><%= image_tag (found_item.image1), class: "image-index img-responsive" %></dd>
+                      </div>
+                    </dl>
+                    <div class="btn-group btn-group-justified">
+                      <%= link_to icon('search-plus'), found_item, class: "btn btn-primary bottom-button" %>
                     </div>
-                  </dl>
-                  <div class="btn-group btn-group-justified">
-                    <%= link_to icon('search-plus'), found_item, class: "btn btn-primary bottom-button" %>
                   </div>
                 </div>
               </div>
+            <% end %>
+          <% else %>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+              <h4>No items present</h4>
             </div>
           <% end %>
-        <% end %>
+        </div>
+
+        <div class='items-js'>
+          <% if @items.present? %>
+            <% @items.each do |item| %>
+              <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 isotope-item">
+                <div class="panel panel-default item-border">
+                  <div class="panel-heading">
+                    <h3 class="panel-title"><%= item.name.capitalize.truncate(30) %></h3>
+                  </div>
+                  <div class="panel-body">
+                    <dl>
+                      <div class="boxed-image">
+                        <dd><%= image_tag (item.image1), class: "image-index img-responsive" %></dd>
+                      </div>
+                    </dl>
+                    <div class="btn-group btn-group-justified">
+                      <%= link_to icon('search-plus'), item, class: "btn btn-primary bottom-button" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+              <h4>No items present</h4>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class='edit-js'>
+
+      </div>
+
+      <div class='cancel-js'>
+
       </div>
     </div>
   </div>
 </div>
 
+
 <script>
-  $('.javascript').show();
 
+  $('.found-js').show();
+  $('.items-js').hide();
 
-  $('.found-items-js').click(function(){
-    $('.javascript').show();
-    $('.edit-profile-view').hide();
+  $('.btn-marketplace').hide();
+  $('.btn-found').show();
+
+  $('.items-button-js').click(function(){
+    $('.found-js').hide();
+    $('.items-js').show();
+    $('.edit-js').hide();
+    $('.cancel-js').hide();
+
+    $('.btn-marketplace').show();
+    $('.btn-found').hide();
+  });
+
+  $('.found-button-js').click(function(){
+    $('.found-js').show();
+    $('.items-js').hide();
+    $('.edit-js').hide();
+    $('.cancel-js').hide();
+
+    $('.btn-marketplace').hide();
+    $('.btn-found').show();
+  });
+
+  $('.edit-profile-js').click(function(){
+    $('.found-js').hide();
+    $('.items-js').hide();
+    $('.edit-js').show();
+    $('.cancel-js').hide();
+
+    $('.btn-marketplace').hide();
+    $('.btn-found').hide();
+  });
+
+  $('.cancel-profile-js').click(function(){
+    $('.found-js').hide();
+    $('.items-js').hide();
+    $('.edit-js').hide();
+    $('.cancel-js').show();
+
+    $('.btn-marketplace').hide();
+    $('.btn-found').hide();
   });
 </script>
+

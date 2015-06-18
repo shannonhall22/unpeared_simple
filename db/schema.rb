@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150618031332) do
+ActiveRecord::Schema.define(version: 20150618205253) do
+
+  create_table "ages", force: :cascade do |t|
+    t.integer  "found_id"
+    t.integer  "item_id"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "categories", force: :cascade do |t|
     t.integer  "found_id"
@@ -32,6 +40,18 @@ ActiveRecord::Schema.define(version: 20150618031332) do
     t.integer  "user_id"
     t.string   "location"
     t.integer  "category_id"
+    t.integer  "side_id"
+    t.integer  "size_id"
+    t.integer  "age_id"
+    t.integer  "gender_id"
+  end
+
+  create_table "genders", force: :cascade do |t|
+    t.integer  "found_id"
+    t.integer  "item_id"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "items", force: :cascade do |t|
@@ -46,6 +66,26 @@ ActiveRecord::Schema.define(version: 20150618031332) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "category_id"
+    t.integer  "side_id"
+    t.integer  "size_id"
+    t.integer  "age_id"
+    t.integer  "gender_id"
+  end
+
+  create_table "sides", force: :cascade do |t|
+    t.integer  "found_id"
+    t.integer  "item_id"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sizes", force: :cascade do |t|
+    t.integer  "found_id"
+    t.integer  "item_id"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

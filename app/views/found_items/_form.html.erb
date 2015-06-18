@@ -15,6 +15,27 @@
 
     <hr>
 
+    <h5>Optional Inputs:</h5>
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.association :side, collection: Side.all, label_method: :name, value_method: :id %>
+      </div>
+      <div class="col-md-6">
+        <%= f.association :size, collection: Size.all, label_method: :name, value_method: :id %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.association :gender, collection: Gender.all, label_method: :name, value_method: :id %>
+      </div>
+      <div class="col-md-6">
+        <%= f.association :age, collection: Age.all, label_method: :name, value_method: :id %>
+      </div>
+    </div>
+
+    <hr>
+
     <h5><strong>Upload Images <small>*At least one required</small></strong></h5>
     <%= f.input :image1, label: false %>
     <%= f.input :image2, label: false %>

@@ -1,6 +1,6 @@
 <div class="page-header">
   <h1>
-    Items for Sale
+    Marketplace
     <div class="pull-right">
       <% if user_signed_in? %>
         <%= link_to icon('plus'), new_item_path, class: "btn btn-lg btn-success" %>
@@ -9,13 +9,14 @@
   </h1>
 </div>
 
-<!-- Responsive, Isotope-based layout example -->
+<!-- Responsive, Isotope-based layout -->
 
 <div class="row">
   <div class="col-xs-2">
+    <h4>Narrow By:</h4>
     <%= search_form_for @q do |f| %>
       <div class="form-group">
-        <h5><strong>Search:</strong></h5>
+        <h5><strong>Title or Description:</strong></h5>
         <%= f.text_field :name_or_desc_cont, :class => "form-control", :placeholder => "Enter text here..." %>
       </div>
 
@@ -59,7 +60,7 @@
         <div class="panel panel-default item-border">
           <div class="panel-heading">
             <h3 class="panel-title">
-              <%= item.name.truncate(20) %>
+              <%= item.name.capitalize.truncate(20) %>
               <div class="pull-right">
                 $<%= item.price %>
               </div>

@@ -2,7 +2,7 @@
 
 <div class="row">
   <div class="col-sm-offset-1 col-sm-10 col-md-offset-1 col-md-10">
-    <div class="panel panel-default">
+    <div class="panel panel-default panel-show">
       <div class="panel-heading">
         <div class="row">
           <div class="col-md-6">
@@ -10,10 +10,12 @@
           </div>
           <div class="col-md-6">
             <div class="pull-right">
-              <% if current_user.id == @found_item.user_id %>
-                <%= link_to 'Edit', edit_found_item_path(@found_item) %>
-                |
-                <%= link_to 'Delete', @found_item, method: :delete, data: { confirm: "Do you really want to delete this found_item?" } %>
+              <% if user_signed_in? %>
+                <% if current_user.id == @found_item.user_id %>
+                  <%= link_to 'Edit', edit_found_item_path(@found_item) %>
+                  |
+                  <%= link_to 'Delete', @found_item, method: :delete, data: { confirm: "Do you really want to delete this found_item?" } %>
+                <% end %>
               <% end %>
             </div>
           </div>
@@ -41,21 +43,27 @@
               </div>
             </div>
           </div>
+
           <div class="col-md-6">
             <dl class="dl-horizontal">
-              <p><%= @found_item.desc %></p>
-
-              <hr>
-
               <dt>Category</dt>
               <dd><%= @found_item.category.name %></dd>
 
               <dt>Location Found</dt>
               <dd><%= @found_item.location %></dd>
+
+              <% if @found_item.desc.present? %>
+                <hr>
+
+                <h5>Description:</h5>
+                <p><%= @found_item.desc %></p>
+              <% end %>
             </dl>
 
-            <% unless user_signed_in? %>
-              <%= link_to 'Message Finder', '#', class: 'btn btn-primary btn-block' %>
+            <% if user_signed_in? %>
+              <% if current_user.id != @found_item.user_id %>
+                <%= link_to 'Message Finder', '#', class: 'btn btn-primary btn-block' %>
+              <% end %>
             <% end %>
           </div>
         </div>

@@ -1,78 +1,119 @@
-<div class="container">
-  <div class="row">
-    <div class="page-header">
-      <h1>
-        Found Items
-        <div class="pull-right">
-          <% if user_signed_in? %>
-            <%= link_to icon('plus'), new_found_item_path, class: "btn btn-lg btn-success" %>
-          <% end %>
-        </div>
-
-      </h1>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-2">
-      <h4>Narrow By:</h4>
-      <br>
-
-      <%= search_form_for @q do |f| %>
-        <div class="form-group">
-          <h5><strong>Search:</strong></h5>
-          <%= f.text_field :name_or_desc_cont, :class => "form-control", :placeholder => "Enter text here..." %>
-        </div>
-
-        <hr>
-
-        <div class="form-group">
-          <h5>Location (ZIP only):</h5>
-          <%= f.text_field :location_eq, :class => "form-control", :placeholder => "Ex. 60654" %>
-        </div>
-
-        <hr>
-
-        <div class="form-group">
-          <h5>Category:</h5>
-          <% Category.all.each do |category| %>
-            <p>
-              <%= check_box_tag('q[category_id_eq_any][]', category.id, (true if @q.category_id_eq_any.try(:include?, category.id))) %>
-              <%= category.name %>
-            </p>
-          <% end %>
-        </div>
-
-        <hr>
-
-        <%= f.submit :class => "btn btn-primary" %>
-        <a href="/found_items" class="btn btn-default">Reset</a>
+<div class="page-header">
+  <h1>
+    Found Items
+    <div class="pull-right">
+      <% if user_signed_in? %>
+        <%= link_to icon('plus'), new_found_item_path, class: "btn btn-lg btn-success" %>
       <% end %>
     </div>
+  </h1>
+</div>
 
-  <div class="col-md-10">
-    <div class="row isotope-container">
-    <% @found_items.each do |found_item| %>
-      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 isotope-item">
-        <div class="panel panel-default item-border">
-          <div class="panel-heading">
-            <h3 class="panel-title"><%= found_item.name.capitalize.truncate(30) %></h3>
-          </div>
-          <div class="panel-body">
-            <dl>
-              <div class="boxed-image">
-                <dd><%= image_tag (found_item.image1), class: "image-index img-responsive" %></dd>
-              </div>
-            </dl>
-            <div class="btn-group btn-group-justified">
-              <%= link_to icon('search-plus'), found_item, class: "btn btn-primary bottom-button" %>
+<!-- Responsive, Isotope-based layout -->
+
+<div class="row">
+  <div class="col-xs-2">
+    <h4>Narrow By:</h4>
+    <%= search_form_for @q do |f| %>
+      <div class="form-group">
+        <h5><strong>Title or Description:</strong></h5>
+        <%= f.text_field :name_or_desc_cont, :class => "form-control", :placeholder => "Enter text here..." %>
+      </div>
+
+      <hr>
+
+      <div class="form-group">
+        <h5><strong>Location (ZIP only):</strong></h5>
+        <%= f.text_field :location_eq, :class => "form-control", :placeholder => "Ex. 60654" %>
+      </div>
+
+      <hr>
+
+      <div class="form-group">
+        <h5><strong>Category:</strong></h5>
+        <% Category.all.each do |category| %>
+          <p>
+            <%= check_box_tag('q[category_id_eq_any][]', category.id, (true if @q.category_id_eq_any.try(:include?, category.id))) %>
+            <%= category.name %>
+          </p>
+        <% end %>
+      </div>
+
+<!--       <hr> -->
+
+      <!-- <div class="form-group">
+        <h5><strong>Side:</strong></h5>
+        <% Side.all.each do |side| %>
+          <p>
+            <%= check_box_tag('q[side_id_eq_any][]', side.id, (true if @q.side_id_eq_any.try(:include?, side.id))) %>
+            <%= side.name %>
+          </p>
+        <% end %>
+      </div>
+
+      <hr>
+
+      <div class="form-group">
+        <h5><strong>Size:</strong></h5>
+        <% Size.all.each do |size| %>
+          <p>
+            <%= check_box_tag('q[size_id_eq_any][]', size.id, (true if @q.size_id_eq_any.try(:include?, size.id))) %>
+            <%= size.name %>
+          </p>
+        <% end %>
+      </div>
+
+      <hr>
+
+      <div class="form-group">
+        <h5><strong>Gender:</strong></h5>
+        <% Gender.all.each do |gender| %>
+          <p>
+            <%= check_box_tag('q[gender_id_eq_any][]', gender.id, (true if @q.gender_id_eq_any.try(:include?, gender.id))) %>
+            <%= gender.name %>
+          </p>
+        <% end %>
+      </div>
+
+      <hr>
+
+      <div class="form-group">
+        <h5><strong>Age:</strong></h5>
+        <% Age.all.each do |age| %>
+          <p>
+            <%= check_box_tag('q[age_id_eq_any][]', age.id, (true if @q.age_id_eq_any.try(:include?, age.id))) %>
+            <%= age.name %>
+          </p>
+        <% end %>
+      </div> -->
+
+      <hr>
+
+      <%= f.submit :class => "btn btn-primary submit-js" %>
+      <a href="/found_items" class="btn btn-default">Reset</a>
+    <% end %>
+  </div>
+
+<div class="col-md-10 isotope-container">
+  <% @found_items.each do |found_item| %>
+    <div class="col-sm-6 col-md-3 col-lg-4 isotope-item">
+      <div class="panel panel-default item-border">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= found_item.name.capitalize.truncate(30) %></h3>
+        </div>
+        <div class="panel-body">
+          <dl>
+            <div class="boxed-image">
+              <dd><%= image_tag (found_item.image1), class: "image-index img-responsive" %></dd>
             </div>
+          </dl>
+          <div class="btn-group btn-group-justified">
+            <%= link_to icon('search-plus'), found_item, class: "btn btn-primary bottom-button" %>
           </div>
         </div>
       </div>
-    <% end %>
     </div>
-  </div>
+  <% end %>
 </div>
 
 <!-- JavaScript for Isotope layout and quicksearch -->
@@ -118,6 +159,11 @@
       timeout = setTimeout( delayed, threshold || 100 );
     }
   }
+
+
+  $('.submit-js').click(function(){
+    location.reload
+  });
 </script>
 
 <!-- End responsive, Isotope-based layout example -->
