@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'jquery-ui-rails'
 gem 'pry'
 gem 'devise'
 gem 'simple_form'
