@@ -9,14 +9,21 @@
         <%= f.input :price %>
       </div>
       <div class="col-md-6">
-        <%= f.input :category, :collection => ['Jewelery', 'Footwear', 'Gloves', 'Other'] %>
+        <%= f.association :category, collection: Category.all, label_method: :name, value_method: :id %>
       </div>
     </div>
 
     <hr>
 
-    <%= f.input :image1, :label => 'Upload Images (Must upload at least one)' %>
-    <%= f.input :image2, label: false %>
+    <% if @item.image1.present? %>
+      <%= image_tag(@item.image1_url, class: 'small-image') %>
+      <%= f.input :image1, :label => 'Upload Images (Must upload at least one)' %>
+      <%= f.hidden_field :image1_cache %>
+    <% else %>
+      <%= f.input :image1, :label => 'Upload Images (Must upload at least one)' %>
+    <% end %>
+
+    <%= f.file_field :image2, label: false, title: 'test' %>
     <%= f.input :image3, label: false %>
     <%= f.hidden_field :user_id, value: current_user.id %>
   </div>

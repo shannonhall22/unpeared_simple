@@ -7,6 +7,6 @@ class Item < ActiveRecord::Base
   mount_uploader :image3, Image3Uploader
 
   #validations of the new and edit forms for items - price must be number
-  validates :name, :category, :price, :image1, presence: true
+  validates :name, :price, :image1, :category_id, presence: true
   validates :price, numericality: true
 end

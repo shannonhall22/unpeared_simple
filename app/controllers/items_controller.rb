@@ -14,6 +14,11 @@ class ItemsController < ApplicationController
   def index
     @q = Item.ransack(params[:q])
     @items = @q.result
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /items/1
@@ -78,6 +83,6 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:name, :desc, :price, :found, :category, :image1, :image2, :image3, :user_id)
+      params.require(:item).permit(:name, :desc, :price, :category_id, :image1, :image2, :image3, :user_id)
     end
 end

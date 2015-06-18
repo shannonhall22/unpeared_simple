@@ -39,7 +39,7 @@
               <hr>
 
               <dt>Category</dt>
-              <dd><%= @item.category %></dd>
+              <dd><%= @item.category.name %></dd>
             </dl>
 
             <% if current_user.id == @item.user_id %>

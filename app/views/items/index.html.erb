@@ -2,7 +2,7 @@
   <h1>
     Items for Sale
     <div class="pull-right">
-      <%= link_to icon('search'), new_found_item_path, class: "btn btn-lg btn-primary" %>
+      <%= link_to icon('search'), "#", class: "btn btn-lg btn-primary search-js" %>
       <% if user_signed_in? %>
         <%= link_to icon('plus'), new_item_path, class: "btn btn-lg btn-success" %>
       <% end %>
@@ -16,19 +16,25 @@
   <div class="col-xs-12">
     <%= search_form_for @q do |f| %>
       <div class="form-group">
-        <%= f.label :name_or_desc_or_category_cont, "Search" %>
-        <%= f.text_field :name_or_desc_or_category_cont, :class => "form-control", :placeholder => "Enter text here..." %>
+        <%= f.label :name_or_desc_cont, "Search" %>
+        <%= f.text_field :name_or_desc_cont, :class => "form-control", :placeholder => "Enter text here..." %>
       </div>
 
       <div class="form-group">
-        <%= f.label :price_gteq, "Price between" %>
+        <%= f.label :price_gteq, "Between" %>
         <%= f.text_field :price_gteq, :class => "form-control", :placeholder => "Price" %>
         <%= f.label :price_lteq, "and" %>
         <%= f.text_field :price_lteq, :class => "form-control", :placeholder => "Price" %>
       </div>
 
       <div class="form-group">
-
+        <h5><strong>Category:</strong></h5>
+        <% Category.all.each do |category| %>
+          <label>
+            <%= check_box_tag('q[category_id_eq_any][]', category.id, (true if @q.category_id_eq_any.try(:include?, category.id))) %>
+            <%= category.name %>
+          <label>
+        <% end %>
       </div>
 
       <%= f.submit :class => "btn btn-primary" %>
@@ -109,6 +115,11 @@
       timeout = setTimeout( delayed, threshold || 100 );
     }
   }
+
+  $('#item_search').hide();
+  $('.search-js').click(function(){
+    $('#item_search').toggle();
+  });
 </script>
 
 <!-- End responsive, Isotope-based layout example -->
