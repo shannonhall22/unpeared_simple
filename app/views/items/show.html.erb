@@ -40,6 +40,9 @@
 
               <dt>Category</dt>
               <dd><%= @item.category.name %></dd>
+
+              <dt>Seller</dt>
+              <dd><%= link_to @item.user.username, '#' %></dd>
             </dl>
 
             <% if current_user.id == @item.user_id %>

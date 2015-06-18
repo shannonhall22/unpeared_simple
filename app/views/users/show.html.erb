@@ -7,37 +7,49 @@
 
   <div class="row">
     <div class="col-md-2">
-      <h4><%= link_to 'My Found Items', '#', remote: true %></h4>
+      <img src="<%= current_user.image_url %>" class="profile-pic img-responsive">
+      <hr>
+      <h4><%= link_to 'My Found Items', class: 'found-items-js' %></h4>
 <!--       <h4>My Items for Sale</h4> -->
       <hr>
-      <h4><%= link_to 'Edit Profile', 'users/edit_profile', remote: true %></h4>
-      <h4><%= link_to 'Cancel Account', '#', remote: true %></h4>
+      <h4><%= link_to 'Edit Profile', class: 'edit-profile-js' %></h4>
+      <h4><%= link_to 'Cancel Account', remote: true %></h4>
     </div>
 
     <div class="col-md-10 javascript">
       <div class="row isotope-container">
-  <% @found_items.each do |found_item| %>
-    <% if found_item.user_id == current_user.id %>
-      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 isotope-item">
-        <div class="panel panel-default item-border">
-          <div class="panel-heading">
-            <h3 class="panel-title"><%= found_item.name.truncate(30) %></h3>
-          </div>
-          <div class="panel-body">
-            <dl>
-              <div class="boxed-image">
-                <dd><%= image_tag (found_item.image1), class: "image-index img-responsive" %></dd>
+        <% @found_items.each do |found_item| %>
+          <% if found_item.user_id == current_user.id %>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 isotope-item">
+              <div class="panel panel-default item-border">
+                <div class="panel-heading">
+                  <h3 class="panel-title"><%= found_item.name.capitalize.truncate(30) %></h3>
+                </div>
+                <div class="panel-body">
+                  <dl>
+                    <div class="boxed-image">
+                      <dd><%= image_tag (found_item.image1), class: "image-index img-responsive" %></dd>
+                    </div>
+                  </dl>
+                  <div class="btn-group btn-group-justified">
+                    <%= link_to icon('search-plus'), found_item, class: "btn btn-primary bottom-button" %>
+                  </div>
+                </div>
               </div>
-            </dl>
-            <div class="btn-group btn-group-justified">
-              <%= link_to icon('search-plus'), found_item, class: "btn btn-primary bottom-button" %>
             </div>
-          </div>
-        </div>
+          <% end %>
+        <% end %>
       </div>
-    <% end %>
-  <% end %>
-</div>
     </div>
   </div>
 </div>
+
+<script>
+  $('.javascript').show();
+
+
+  $('.found-items-js').click(function(){
+    $('.javascript').show();
+    $('.edit-profile-view').hide();
+  });
+</script>
