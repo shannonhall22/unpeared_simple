@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :items
   resources :charges
 
+  get "/cart_items/new/:id" => "cart_items#new"
   get "/cart/:id" => "carts#show"
   get "/home" => "static#show"
   get "/about" => "static#about"

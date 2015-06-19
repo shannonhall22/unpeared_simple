@@ -76,7 +76,7 @@
               <div class="btn-group btn-group-justified">
                 <% if user_signed_in? %>
                   <% unless current_user.id == item.user_id %>
-                    <%= link_to 'Add to Cart', '/cart_items/new', class: "btn btn-success", id: "#{item.id}" %>
+                    <%= link_to 'Add to Cart', "/cart_items/new/#{item.id}", class: "btn btn-success", id: "#{item.id}" %>
                   <% end %>
                 <% end %>
                 <%= link_to icon('search-plus'), item, class: "btn btn-primary bottom-button" %>
