@@ -40,7 +40,7 @@
     <% if @item.image1.present? %>
       <%#= image_tag(@item.image1_url, class: 'small-image') %>
       <%= f.input :image1, label: false %>
-      <%= f.hidden_field :image1_cache %>
+      <%#= f.hidden_field :image1_cache %>
     <% else %>
       <%= f.input :image1, label: false %>
     <% end %>
@@ -48,6 +48,8 @@
     <%= f.input :image2, label: false, title: 'test' %>
     <%= f.input :image3, label: false %>
     <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :cart_id, value: 0 %>
+    <%= f.hidden_field :in_cart, value: false %>
   </div>
 
   <hr>

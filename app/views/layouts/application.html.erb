@@ -47,7 +47,7 @@
 
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
-            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+            <li><a href="/cart/<%= current_user.id %>"><i class="fa fa-shopping-cart"></i></a></li>
             <li><a href="/users/<%= current_user.id %>">My Profile</a></li>
             <li><a href="/users/sign_out" data-method="delete">Sign out</a></li>
           <% else %>

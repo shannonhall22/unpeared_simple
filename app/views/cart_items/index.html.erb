@@ -1,7 +1,7 @@
 <div class="page-header">
   <h1>
-    Carts
-    <%= link_to icon('plus'), new_cart_path, class: "btn btn-lg btn-success" %>
+    Cart Items
+    <%= link_to icon('plus'), new_cart_item_path, class: "btn btn-lg btn-success" %>
   </h1>
 </div>
 
@@ -9,28 +9,34 @@
 
 <div class="row">
   <div class="col-xs-12">
-    <input type="text" id="quicksearch" placeholder="Search Carts (start typing)" class="form-control">
+    <input type="text" id="quicksearch" placeholder="Search Cart items (start typing)" class="form-control">
   </div>
 </div>
 
 <hr>
 
 <div class="row isotope-container">
-<% @carts.each do |cart| %>
+<% @cart_items.each do |cart_item| %>
   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Cart #<%= cart.id %></h3>
+        <h3 class="panel-title">Cart Item #<%= cart_item.id %></h3>
       </div>
       <div class="panel-body">
         <dl>
+          <dt>User</dt>
+          <dd><%= cart_item.user_id %></dd>
+
+          <dt>Cart</dt>
+          <dd><%= cart_item.cart_id %></dd>
+
         </dl>
         <div class="btn-group btn-group-justified">
-          <%= link_to icon('search-plus'), cart, class: "btn btn-primary" %>
+          <%= link_to icon('search-plus'), cart_item, class: "btn btn-primary" %>
 
-          <%= link_to icon('edit'), edit_cart_url(cart), class: "btn btn-warning" %>
+          <%= link_to icon('edit'), edit_cart_item_url(cart_item), class: "btn btn-warning" %>
 
-          <%= link_to icon('trash-o'), cart, method: :delete, data: { confirm: "Do you really want to delete this cart?" }, class: "btn btn-danger" %>
+          <%= link_to icon('trash-o'), cart_item, method: :delete, data: { confirm: "Do you really want to delete this cart_item?" }, class: "btn btn-danger" %>
         </div>
       </div>
     </div>

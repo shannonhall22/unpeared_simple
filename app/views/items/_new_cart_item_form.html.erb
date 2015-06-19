@@ -1,0 +1,7 @@
+<%= form_for(item, html: {class: 'button-submit'}, remote: true) do |f| -%>
+  <%= f.hidden_field :cart_id, value: current_user.id %>
+  <%= f.hidden_field :in_cart, value: true %>
+  <button class="btn btn-default">
+    <i class="fa fa-thumbs-o-up"></i>
+  </button>
+<% end %>

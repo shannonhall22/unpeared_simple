@@ -5,6 +5,7 @@ class Item < ActiveRecord::Base
   belongs_to :side
   belongs_to :gender
   belongs_to :age
+  belongs_to :cart
 
   mount_uploader :image1, Image1Uploader
   mount_uploader :image2, Image2Uploader

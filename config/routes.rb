@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :carts
+  resources :cart_items
   resources :ages
   resources :genders
   resources :sides
@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :items
   resources :charges
 
+  get "/cart/:id" => "carts#show"
   get "/home" => "static#show"
   get "/about" => "static#about"
 

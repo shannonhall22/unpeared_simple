@@ -56,28 +56,35 @@
 
   <div class="col-md-10 isotope-container">
     <% @items.each do |item| %>
-      <div class="col-sm-6 col-md-3 col-lg-4 isotope-item">
-        <div class="panel panel-default item-border">
-          <div class="panel-heading">
-            <h3 class="panel-title">
-              <%= item.name.titleize.truncate(20) %>
-              <div class="pull-right">
-                $<%= item.price %>
+      <%#= unless item.in_cart == true %>
+        <div class="col-sm-6 col-md-3 col-lg-4 isotope-item">
+          <div class="panel panel-default item-border">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                <%= item.name.titleize.truncate(20) %>
+                <div class="pull-right">
+                  $<%= item.price %>
+                </div>
+              </h3>
+            </div>
+            <div class="panel-body">
+              <dl>
+                <div class="boxed-image">
+                  <dd><%= image_tag item.image1, class: 'img-responsive image-index' %></dd>
+                </div>
+              </dl>
+              <div class="btn-group btn-group-justified">
+                <% if user_signed_in? %>
+                  <% unless current_user.id == item.user_id %>
+                    <%= link_to 'Add to Cart', '/cart_items/new', class: "btn btn-success", id: "#{item.id}" %>
+                  <% end %>
+                <% end %>
+                <%= link_to icon('search-plus'), item, class: "btn btn-primary bottom-button" %>
               </div>
-            </h3>
-          </div>
-          <div class="panel-body">
-            <dl>
-              <div class="boxed-image">
-                <dd><%= image_tag item.image1, class: 'img-responsive image-index' %></dd>
-              </div>
-            </dl>
-            <div class="btn-group btn-group-justified">
-              <%= link_to icon('search-plus'), item, class: "btn btn-primary bottom-button" %>
             </div>
           </div>
         </div>
-      </div>
+      <%# end %>
     <% end %>
   </div>
 </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150619003905) do
+ActiveRecord::Schema.define(version: 20150619031601) do
 
   create_table "ages", force: :cascade do |t|
     t.integer  "found_id"
@@ -21,9 +21,18 @@ ActiveRecord::Schema.define(version: 20150619003905) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "cart_items", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "cart_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "item_id"
+  end
+
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "item_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -76,6 +85,7 @@ ActiveRecord::Schema.define(version: 20150619003905) do
     t.integer  "age_id"
     t.integer  "gender_id"
     t.integer  "cart_id"
+    t.boolean  "in_cart"
   end
 
   create_table "sides", force: :cascade do |t|
@@ -110,6 +120,7 @@ ActiveRecord::Schema.define(version: 20150619003905) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_url"
+    t.integer  "item_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

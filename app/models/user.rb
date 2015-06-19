@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :found_items
   has_many :items
+  belongs_to :item
 
   mount_uploader :image_url, ImageUrlUploader
 end
