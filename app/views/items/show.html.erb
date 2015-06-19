@@ -5,7 +5,7 @@
     <div class="panel panel-default panel-show">
       <div class="panel-heading">
         <h3 class="panel-title">
-          <%= @item.name.capitalize %>
+          <%= @item.name.titleize %>
           <div class="pull-right">
             $<%= @item.price %>
           </div>
@@ -16,33 +16,60 @@
           <div class="col-md-6">
             <div class="row">
               <div class="col-md-12">
-                <%= image_tag @item.image1, class: "img-responsive" %>
+                <%= image_tag @item.image1, class: "img-responsive lg-img-js" %>
               </div>
             </div>
             <div class="row">
               <div class="col-md-3 mini-image-border">
                 <% if @item.image2.present? %>
-                  <%= image_tag @item.image2, class: 'img-responsive thumbnail' %>
+                  <%= image_tag @item.image2, class: 'img-responsive thumbnail sm-img-1-js' %>
                 <% end %>
               </div>
               <div class="col-md-3 mini-image-border">
                 <% if @item.image3.present? %>
-                  <%= image_tag @item.image3, class: 'img-responsive thumbnail' %>
+                  <%= image_tag @item.image3, class: 'img-responsive thumbnail sm-img-2-js' %>
                 <% end %>
               </div>
             </div>
           </div>
           <div class="col-md-6">
             <dl class="dl-horizontal">
-              <p><%= @item.desc %></p>
-
-              <hr>
-
               <dt>Category</dt>
               <dd><%= @item.category.name %></dd>
 
+              <% if @item.side.present? || @item.size.present? %>
+                <dt>Size</dt>
+                <dd>
+                  <% if @item.side.present? %>
+                    <%= @item.side.name %>
+                  <% end %>
+                  <% if @item.size.present? %>
+                    <%= @item.size.name %>
+                  <% end %>
+                </dd>
+              <% end %>
+
+              <% if @item.gender.present? || @item.age.present? %>
+                <dt>Type</dt>
+                <dd>
+                  <% if @item.age.present? %>
+                    <%= @item.age.name %>
+                  <% end %>
+                  <% if @item.gender.present? %>
+                    <%= @item.gender.name %>'s
+                  <% end %>
+                </dd>
+              <% end %>
+
               <dt>Seller</dt>
               <dd><%= link_to @item.user.username, '#' %></dd>
+
+              <% if @item.desc.present? %>
+                <hr>
+
+                <h5>Description:</h5>
+                <p><%= @item.desc %></p>
+              <% end %>
             </dl>
 
             <% if user_signed_in? %>
@@ -63,4 +90,14 @@
   </div>
 </div>
 
-<!-- End responsive panel example -->
+<!-- End responsive panel -->
+
+<script>
+  $('.sm-img-2-js').click(function(){
+    $('.lg-img-js').replaceWith( $('.sm-img-2-js'));
+  });
+
+  $('.sm-img-1-js').click(function(){
+    $('.lg-img-js').replaceWith( $('.sm-img-1-js'));
+  });
+</script>

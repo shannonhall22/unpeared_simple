@@ -6,7 +6,7 @@
       <div class="panel-heading">
         <div class="row">
           <div class="col-md-6">
-            <h3 class="panel-title"><%= @found_item.name.capitalize %></h3>
+            <h3 class="panel-title"><%= @found_item.name.titleize %></h3>
           </div>
           <div class="col-md-6">
             <div class="pull-right">
@@ -51,6 +51,30 @@
 
               <dt>Location Found</dt>
               <dd><%= @found_item.location %></dd>
+
+              <% if @found_item.side.present? || @found_item.size.present? %>
+                <dt>Size</dt>
+                <dd>
+                  <% if @found_item.side.present? %>
+                    <%= @found_item.side.name %>
+                  <% end %>
+                  <% if @found_item.size.present? %>
+                    <%= @found_item.size.name %>
+                  <% end %>
+                </dd>
+              <% end %>
+
+              <% if @found_item.gender.present? || @found_item.age.present? %>
+                <dt>Type</dt>
+                <dd>
+                  <% if @found_item.age.present? %>
+                    <%= @found_item.age.name %>
+                  <% end %>
+                  <% if @found_item.gender.present? %>
+                    <%= @found_item.gender.name %>'s
+                  <% end %>
+                </dd>
+              <% end %>
 
               <% if @found_item.desc.present? %>
                 <hr>
