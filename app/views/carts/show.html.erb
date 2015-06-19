@@ -1,0 +1,18 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">My Cart</h3>
+  </div>
+  <div class="panel-body">
+    <% if user_signed_in? %>
+      <% @cart_items.each do |item| %>
+        <% if item.user_id == current_user.id %>
+          <ul>
+            <li>
+              <%= item.item.id %>
+            </li>
+          </ul>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
