@@ -7,13 +7,49 @@
       <% @cart_items.each do |cart_item| %>
         <%# if cart_item.cart.user_id == current_user.id %>
           <ul>
-            <li>
-              <%= cart_item.item.name %>
-              <%= cart_item.item.price %>
-            </li>
+            <div class="row">
+              <div class="col-md-1">
+                <%= link_to icon('times'), cart_item, method: :delete, class: 'x-link center' %>
+              </div>
+              <div class="col-md-11">
+                <li class="list-group-item">
+                  <%= cart_item.item.name.titleize %>
+                  <span class="pull-right">
+                    $<%= cart_item.item.price %>
+                  </span>
+                </li>
+              </div>
+            </div>
           </ul>
         <% end %>
       <%# end %>
     <% end %>
+    <hr>
+    <div class="row">
+      <div class="col-md-12">
+        <dl class="dl-horizontal pull-right">
+          <dt><strong>Subtotal</strong></dt>
+          <dd></dd>
+        </dl>
+      </div>
+      <div class="col-md-12">
+        <dl class="dl-horizontal pull-right">
+          <dt><strong>Tax</strong></dt>
+          <dd></dd>
+        </dl>
+      </div>
+      <div class="col-md-12">
+        <dl class="dl-horizontal pull-right">
+          <dt><strong>Shipping</strong></dt>
+          <dd></dd>
+        </dl>
+      </div>
+      <div class="col-md-12">
+        <dl class="dl-horizontal pull-right">
+          <dt><strong>Total</strong></dt>
+          <dd></dd>
+        </dl>
+      </div>
+    </div>
   </div>
 </div>

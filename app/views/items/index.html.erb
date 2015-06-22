@@ -76,7 +76,18 @@
               <div class="btn-group btn-group-justified">
                 <% if user_signed_in? %>
                   <% unless current_user.id == item.user_id %>
-                    <%= link_to 'Add to Cart', "/cart_items/new/#{item.id}", class: "btn btn-success", id: "#{item.id}" %>
+
+                    <%= form_tag cart_items_url, :method => "post", :class => "form-horizontal" do %>
+                      <input type="hidden" id="user_id" name="user_id" class="form-control" value="<%= current_user.id %>">
+
+                      <input type="hidden" id="cart_id" name="cart_id" class="form-control" value="<%= current_user.id %>">
+
+                      <input type="hidden" id="item_id" name="item_id" class="form-control" value="<%= item.id %>">
+
+                      <button type="submit" class="btn btn-success bottom-button">
+                        Add to Cart
+                      </button>
+                    <% end %>
                   <% end %>
                 <% end %>
                 <%= link_to icon('search-plus'), item, class: "btn btn-primary bottom-button" %>
